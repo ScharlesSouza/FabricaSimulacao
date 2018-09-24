@@ -8,7 +8,7 @@ public class Entidade {
 	private String tipoConsumo;
 	private Float desperdicio;
 	
-	//construtor para  o resfriador - sem peso de capacidade
+	//construtor para  o resfriador - sem peso de capacidadee
 		public Entidade(Float pesoEntrada, Integer freqEntrada, Integer tempoProducao,
 				Float pesoCapacidadeMaxima, Float consumo, String tipoConsumo) {
 			
