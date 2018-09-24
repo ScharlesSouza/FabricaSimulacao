@@ -10,10 +10,14 @@ public class Cronometro {
 	int qnt_segundos, velocidade;
 	final SimpleDateFormat HHmmss = new SimpleDateFormat("HH:mm:ss.SSS");
 	
+	
+	
+	
 	public Cronometro(Integer qnt_segundos, Integer velocidade) {
 		this.qnt_segundos = qnt_segundos;
 		this.velocidade = velocidade;
 		
+		Entidade esteira1 = new Entidade((float)100, 10, (float)100, 10, (float)1000, (float)1000, "Kva/H");
 		
 		
 		for(int i =1; i<=qnt_segundos;i++){
@@ -29,8 +33,8 @@ public class Cronometro {
 			}
                 
 			 
-			 	if(i%5==0) {
-			 		System.out.println("\n"+HHmmss.format(new Date()) +" => "+ i+" Pão produzido! ");
+			 	if(i%esteira1.getFreqEntrada() == 0) {
+			 		System.out.println("\n"+HHmmss.format(new Date()) +" => "+ i+" 100kg de Materia Prima na esteira! ");
 			 		
 			 	}else {
 			 		

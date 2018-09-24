@@ -1,5 +1,7 @@
 
 public class Entidade {
+	
+	public Float pesoEntrada;	
 	private Integer freqEntrada;
 	private Float pesoSaida;
 	private Integer tempoProducao;
@@ -8,9 +10,15 @@ public class Entidade {
 	private String tipoConsumo;
 	private Float desperdicio;
 	
-	//construtor para  o resfriador - sem peso de capacidadee
+	//construtor para  o resfriador - sem peso de capacidade
 		public Entidade(Float pesoEntrada, Integer freqEntrada, Integer tempoProducao,
-				Float pesoCapacidadeMaxima, Float consumo, String tipoConsumo) {
+				Float pesoSaida, Float consumo, String tipoConsumo) {
+			this.setPesoEntrada(pesoEntrada);
+			this.setFreqEntrada(freqEntrada);
+			this.setPesoSaida(pesoSaida);
+			this.setTempoProducao(tempoProducao);
+			this.setConsumo(consumo);
+			this.setTipoConsumo(tipoConsumo);
 			
 		}
 		
@@ -18,15 +26,31 @@ public class Entidade {
 		public Entidade(Float pesoEntrada, Integer freqEntrada, Float pesoSaida, Integer tempoProducao,
 				Float pesoCapacidadeMaxima, Float consumo, String tipoConsumo, Float desperdicio) {
 			
+			this.setPesoEntrada(pesoEntrada);
+			this.setFreqEntrada(freqEntrada);
+			this.setPesoSaida(pesoSaida);
+			this.setTempoProducao(tempoProducao);
+			this.setPesoCapacidadeMaxima(pesoCapacidadeMaxima);
+			this.setConsumo(consumo);
+			this.setTipoConsumo(tipoConsumo);
+			this.setDesperdicio(desperdicio);
 		}
 		
 		//construtor para as demais entidades
 		public Entidade(Float pesoEntrada, Integer freqEntrada, Float pesoSaida, Integer tempoProducao,
 				Float pesoCapacidadeMaxima, Float consumo, String tipoConsumo) {
 			
+			this.setPesoEntrada(pesoEntrada);
+			this.setFreqEntrada(freqEntrada);
+			this.setPesoSaida(pesoSaida);
+			this.setTempoProducao(tempoProducao);
+			this.setPesoCapacidadeMaxima(pesoCapacidadeMaxima);
+			this.setConsumo(consumo);
+			this.setTipoConsumo(tipoConsumo);
+			
 		}
 	
-	public Float pesoEntrada;
+	
 	public Float getPesoEntrada() {
 		return pesoEntrada;
 	}

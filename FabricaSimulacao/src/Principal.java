@@ -18,6 +18,8 @@ public class Principal {
 		
 		
 		Cronometro cronometro = new Cronometro(qnt_segundos,velocidade);
+		
+		
 				
 		
 		
