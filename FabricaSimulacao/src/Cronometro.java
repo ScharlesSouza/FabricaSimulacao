@@ -34,7 +34,7 @@ public class Cronometro {
                 
 			 
 			 	if(i%esteira1.getFreqEntrada() == 0) {
-			 		System.out.println("\n"+HHmmss.format(new Date()) +" => "+ i+" 100kg de Materia Prima na esteira! ");
+			 		System.out.println("\n"+HHmmss.format(new Date()) +" => "+ i+" 100kg de Materia Prima na esteira1! ");
 			 		
 			 	}else {
 			 		
