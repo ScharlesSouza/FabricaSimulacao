@@ -1,18 +1,24 @@
 
 public class Entidade {
 	
-	public Float pesoEntrada;	
+	private Integer pesoEntrada;	
 	private Integer freqEntrada;
-	private Float pesoSaida;
+	private Integer pesoSaida;
 	private Integer tempoProducao;
-	private Float pesoCapacidadeMaxima;
-	private Float consumo;
+	private Integer pesoCapacidadeMaxima;
+	private Integer consumo;
 	private String tipoConsumo;
-	private Float desperdicio;
+	private Integer desperdicio;
+	private Integer cargaAtual=0;
 	
-	//construtor para  o resfriador - sem peso de capacidade
-		public Entidade(Float pesoEntrada, Integer freqEntrada, Integer tempoProducao,
-				Float pesoSaida, Float consumo, String tipoConsumo) {
+	//construtor 
+	public Entidade() {
+				
+	}
+	
+	//construtor para  o resfriador - sem peso de capacidade e sem desperdicio
+		public Entidade(Integer pesoEntrada, Integer freqEntrada, Integer tempoProducao,
+				Integer pesoSaida, Integer consumo, String tipoConsumo) {
 			this.setPesoEntrada(pesoEntrada);
 			this.setFreqEntrada(freqEntrada);
 			this.setPesoSaida(pesoSaida);
@@ -23,8 +29,8 @@ public class Entidade {
 		}
 		
 		//construtor para a maquina que prepara a materia prima - com desperdicio
-		public Entidade(Float pesoEntrada, Integer freqEntrada, Float pesoSaida, Integer tempoProducao,
-				Float pesoCapacidadeMaxima, Float consumo, String tipoConsumo, Float desperdicio) {
+		public Entidade(Integer pesoEntrada, Integer freqEntrada, Integer pesoSaida, Integer tempoProducao,
+				Integer pesoCapacidadeMaxima, Integer consumo, String tipoConsumo, Integer desperdicio) {
 			
 			this.setPesoEntrada(pesoEntrada);
 			this.setFreqEntrada(freqEntrada);
@@ -37,8 +43,8 @@ public class Entidade {
 		}
 		
 		//construtor para as demais entidades
-		public Entidade(Float pesoEntrada, Integer freqEntrada, Float pesoSaida, Integer tempoProducao,
-				Float pesoCapacidadeMaxima, Float consumo, String tipoConsumo) {
+		public Entidade(Integer pesoEntrada, Integer freqEntrada, Integer pesoSaida, Integer tempoProducao,
+				Integer pesoCapacidadeMaxima, Integer consumo, String tipoConsumo) {
 			
 			this.setPesoEntrada(pesoEntrada);
 			this.setFreqEntrada(freqEntrada);
@@ -51,22 +57,52 @@ public class Entidade {
 		}
 	
 	
-	public Float getPesoEntrada() {
+	public Integer getPesoEntrada() {
 		return pesoEntrada;
 	}
-	public void setPesoEntrada(Float pesoEntrada) {
+	public void setPesoEntrada(Integer pesoEntrada) {
 		this.pesoEntrada = pesoEntrada;
 	}
+	
+	public boolean carrega() {
+		
+		boolean livre;
+		if(getCargaAtual()+getPesoEntrada() <= pesoCapacidadeMaxima) {
+		this.cargaAtual = getPesoEntrada()+getCargaAtual();
+			livre=true;
+		}else {
+			livre=false;
+		}
+		return livre;
+	}
+	
+	public Integer getCargaAtual() {
+		return cargaAtual;
+	}
+public boolean descarrega(Integer valor) {
+		
+		boolean contemItem;
+		if(getCargaAtual()-valor >=0) {
+		this.cargaAtual = getCargaAtual()-valor;
+			contemItem=true;
+		}else {
+			contemItem=false;
+		}
+		return contemItem;
+	}
+	
+
+	
 	public Integer getFreqEntrada() {
 		return freqEntrada;
 	}
 	public void setFreqEntrada(Integer freqEntrada) {
 		this.freqEntrada = freqEntrada;
 	}
-	public Float getPesoSaida() {
+	public Integer getPesoSaida() {
 		return pesoSaida;
 	}
-	public void setPesoSaida(Float pesoSaida) {
+	public void setPesoSaida(Integer pesoSaida) {
 		this.pesoSaida = pesoSaida;
 	}
 	public Integer getTempoProducao() {
@@ -75,16 +111,16 @@ public class Entidade {
 	public void setTempoProducao(Integer tempoProducao) {
 		this.tempoProducao = tempoProducao;
 	}
-	public Float getPesoCapacidadeMaxima() {
+	public Integer getPesoCapacidadeMaxima() {
 		return pesoCapacidadeMaxima;
 	}
-	public void setPesoCapacidadeMaxima(Float pesoCapacidadeMaxima) {
+	public void setPesoCapacidadeMaxima(Integer pesoCapacidadeMaxima) {
 		this.pesoCapacidadeMaxima = pesoCapacidadeMaxima;
 	}
-	public Float getConsumo() {
+	public Integer getConsumo() {
 		return consumo;
 	}
-	public void setConsumo(Float consumo) {
+	public void setConsumo(Integer consumo) {
 		this.consumo = consumo;
 	}
 	public String getTipoConsumo() {
@@ -93,12 +129,13 @@ public class Entidade {
 	public void setTipoConsumo(String tipoConsumo) {
 		this.tipoConsumo = tipoConsumo;
 	}
-	public Float getDesperdicio() {
+	public Integer getDesperdicio() {
 		return desperdicio;
 	}
-	public void setDesperdicio(Float desperdicio) {
+	public void setDesperdicio(Integer desperdicio) {
 		this.desperdicio = desperdicio;
 	}
+
 	
 	
 	
