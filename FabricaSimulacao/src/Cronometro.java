@@ -42,7 +42,7 @@ public class Cronometro {
 			 	if(i%esteira1.getFreqEntrada() == 0) {
 			 		
 			 		//carrego a esteira se houver capacidade
-			 		if(esteira1.carrega() || forno1.carrega()) {
+			 		if(esteira1.carrega() || forno1.getCargaAtual()==0) {
 			 			System.out.println("\n"+HHmmss.format(new Date()) +" => "+ i+" 100kg de Materia Prima na esteira1!  - Total: "+esteira1.getCargaAtual());			
 			 			
 			 			//se houver carga suficiente para enche o forno eu tiro da esteira1 para o forno e ligo o forno
