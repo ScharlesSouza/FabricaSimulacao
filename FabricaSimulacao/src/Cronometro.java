@@ -76,9 +76,9 @@ public class Cronometro {
 	 					
 	 					
 	 				}else {
-			 			System.out.println("\n"+HHmmss.format(new Date()) +" - "+ MascaraTempo(i*60) +" => esteira1 cheia!");
+			 			//System.out.println("\n"+HHmmss.format(new Date()) +" - "+ MascaraTempo(i*60) +" => esteira1 cheia!");
 			 			
-			 			System.out.println("\n"+HHmmss.format(new Date()) +" - "+ MascaraTempo(i*60) +" => forno1 ligado com "+forno1.getCargaAtual()+"kg");
+			 			//System.out.println("\n"+HHmmss.format(new Date()) +" - "+ MascaraTempo(i*60) +" => forno1 ligado com "+forno1.getCargaAtual()+"kg");
 	 				}
 			 		
 			 		
