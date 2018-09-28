@@ -15,8 +15,13 @@ public class Cronometro {
 	public Cronometro(Integer qnt_segundos, Integer velocidade) {
 		
 		Integer momentoLigouForno=0;
+		Integer momentoLigouMaquina = 0;
 		Entidade esteira1 = new Entidade(100, 10, 100, 10, 1000, 1000, "va/H");
 		Entidade forno1 = new Entidade(100, 10, 600, 480, 600, 2, "L/H");
+		Entidade maquina1 = new Entidade(600, 540, 35, 25, 600, 500, "va/H", 250);
+		Entidade esteira2 = new Entidade(35, 25, 35, 25, 420, 500, "va/H");
+		Entidade resfriador1 = new Entidade(35, 25, 35, 10,35, 2000, "va/H");
+		
 		
 		//Entidade maquina1 = new Entidade((float)600, 480, (float)35, 25, (float)600, (float)500, "va/H", (float)250);
 		//Entidade esteira2 = new Entidade((float)35, 25, (float)35, 10, (float)420, (float)500, "va/H");
@@ -63,15 +68,50 @@ public class Cronometro {
 			 		}else if((momentoLigouForno + forno1.getTempoProducao()) == i) {
 	 					//apos 8 horas libera o forno
 	 					forno1.descarrega(600);	
-	 					System.out.println("\n forno1 com liberado");
+	 					System.out.println("\n forno1 liberado");
 	 					
 	 						//implementar a maquina1
+	 						momentoLigouMaquina = i;
+	 						maquina1.carrega();
+	 						maquina1.descarrega(maquina1.getDesperdicio());
+	 						System.out.println("\n"+HHmmss.format(new Date()) +" => "+ i+" Maquina 1 Ligou!");
+	 					
 	 					
 	 				}else {
 			 			System.out.println("\n"+HHmmss.format(new Date()) +" => "+ i+" esteira1 cheia!");
 			 			
 			 			System.out.println("\n forno1 ligado com "+forno1.getCargaAtual()+"kg");
 	 				}
+			 		
+			 		
+			 		
+			 	}
+			 	//verifico a frequencia de entrada na na maquina
+			 	if((i-momentoLigouMaquina)%maquina1.getTempoProducao() == 0 && maquina1.getCargaAtual()>0) {
+			 		
+			 		
+			 		
+			 		if(esteira2.getCargaAtual()<esteira2.getPesoCapacidadeMaxima()) {
+			 			maquina1.descarrega(35);
+				 		esteira2.carrega();
+				 		resfriador1.carrega();
+			 			System.out.println("\n"+HHmmss.format(new Date()) +" => "+ i+" maquina 1 produziu uma peça! \n uma peça em Esteira2 - Total: "+ esteira2.getCargaAtual());
+				 		
+			 		}else {
+			 			System.out.println("\n"+HHmmss.format(new Date()) +" => "+ i+" Esteira2 cheia!");
+				 		
+			 		}
+			 		
+			 		
+			 	}
+			 	//verifico a frequencia de entrada nresfriador
+			 	if((i-momentoLigouMaquina)%(maquina1.getTempoProducao()+resfriador1.getTempoProducao()) == 0 && resfriador1.getCargaAtual()>0) {
+			 		
+			 		
+			 		
+			 		resfriador1.descarrega(35);
+			 		System.out.println("\n"+HHmmss.format(new Date()) +" => "+ i+" resfriador esfriou uma peça em Esteira2 - Total: ");
+				 		
 			 		
 			 		
 			 		

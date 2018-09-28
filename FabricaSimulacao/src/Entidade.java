@@ -16,18 +16,7 @@ public class Entidade {
 				
 	}
 	
-	//construtor para  o resfriador - sem peso de capacidade e sem desperdicio
-		public Entidade(Integer pesoEntrada, Integer freqEntrada, Integer tempoProducao,
-				Integer pesoSaida, Integer consumo, String tipoConsumo) {
-			this.setPesoEntrada(pesoEntrada);
-			this.setFreqEntrada(freqEntrada);
-			this.setPesoSaida(pesoSaida);
-			this.setTempoProducao(tempoProducao);
-			this.setConsumo(consumo);
-			this.setTipoConsumo(tipoConsumo);
-			
-		}
-		
+	
 		//construtor para a maquina que prepara a materia prima - com desperdicio
 		public Entidade(Integer pesoEntrada, Integer freqEntrada, Integer pesoSaida, Integer tempoProducao,
 				Integer pesoCapacidadeMaxima, Integer consumo, String tipoConsumo, Integer desperdicio) {
