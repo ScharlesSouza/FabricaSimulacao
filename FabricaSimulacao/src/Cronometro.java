@@ -1,8 +1,6 @@
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
+import java.time.Duration;
 import java.util.Date;
-import java.util.Scanner;
 
 public class Cronometro {
 	
@@ -14,8 +12,8 @@ public class Cronometro {
 	
 	public Cronometro(Integer qnt_segundos, Integer velocidade) {
 		
-		Integer momentoLigouForno=0;
-		Integer momentoLigouMaquina = 0;
+		long momentoLigouForno=0;
+		long momentoLigouMaquina = 0;
 		Entidade esteira1 = new Entidade(100, 10, 100, 10, 1000, 1000, "va/H");
 		Entidade forno1 = new Entidade(100, 10, 600, 480, 600, 2, "L/H");
 		Entidade maquina1 = new Entidade(600, 540, 35, 25, 600, 500, "va/H", 250);
@@ -29,9 +27,9 @@ public class Cronometro {
 		
 		
 		esteira1.carrega();
-		System.out.println("\n"+HHmmss.format(new Date()) +" => 0  100kg de Materia Prima na esteira1!  - Total: "+esteira1.getCargaAtual());			
+		System.out.println("\n"+HHmmss.format(new Date()) +" - 00:00:00 => 100kg de Materia Prima na esteira1!  - Total: "+esteira1.getCargaAtual()+"kg");			
 			
-		for(int i =1; i<=qnt_segundos;i++){
+		for(long i =1; i<=qnt_segundos;i++){
 	           
              
 			 try {
@@ -48,7 +46,7 @@ public class Cronometro {
 			 		
 			 		//carrego a esteira se houver capacidade
 			 		if(esteira1.carrega() || forno1.getCargaAtual()==0) {
-			 			System.out.println("\n"+HHmmss.format(new Date()) +" => "+ i+" 100kg de Materia Prima na esteira1!  - Total: "+esteira1.getCargaAtual());			
+			 			System.out.println("\n"+HHmmss.format(new Date()) +" - "+ MascaraTempo(i*60) +" => 100kg de Materia Prima na esteira1!  - Total: "+esteira1.getCargaAtual()+"kg");			
 			 			
 			 			//se houver carga suficiente para enche o forno eu tiro da esteira1 para o forno e ligo o forno
 			 			if(esteira1.getCargaAtual()>=forno1.getPesoEntrada() && i>0) {
@@ -58,7 +56,7 @@ public class Cronometro {
 			 					if(forno1.carrega()) {
 			 						//descarrega da esteira
 			 						esteira1.descarrega(forno1.getPesoEntrada());
-			 						System.out.println("\n forno1 com "+forno1.getCargaAtual()+"kg");			
+			 						System.out.println("\n"+HHmmss.format(new Date()) +" - "+ MascaraTempo(i*60) +" => forno1 com "+forno1.getCargaAtual()+"kg");			
 			 						momentoLigouForno = i;
 			 					}
 			 				}
@@ -68,19 +66,19 @@ public class Cronometro {
 			 		}else if((momentoLigouForno + forno1.getTempoProducao()) == i) {
 	 					//apos 8 horas libera o forno
 	 					forno1.descarrega(600);	
-	 					System.out.println("\n forno1 liberado");
+	 					System.out.println("\n"+HHmmss.format(new Date()) +" - "+ MascaraTempo(i*60) +" => forno1 liberado");
 	 					
 	 						//implementar a maquina1
 	 						momentoLigouMaquina = i;
 	 						maquina1.carrega();
 	 						maquina1.descarrega(maquina1.getDesperdicio());
-	 						System.out.println("\n"+HHmmss.format(new Date()) +" => "+ i+" Maquina 1 Ligou!");
+	 						System.out.println("\n"+HHmmss.format(new Date()) +" - "+ MascaraTempo(i*60) +" => Maquina 1 Ligou!");
 	 					
 	 					
 	 				}else {
-			 			System.out.println("\n"+HHmmss.format(new Date()) +" => "+ i+" esteira1 cheia!");
+			 			System.out.println("\n"+HHmmss.format(new Date()) +" - "+ MascaraTempo(i*60) +" => esteira1 cheia!");
 			 			
-			 			System.out.println("\n forno1 ligado com "+forno1.getCargaAtual()+"kg");
+			 			System.out.println("\n"+HHmmss.format(new Date()) +" - "+ MascaraTempo(i*60) +" => forno1 ligado com "+forno1.getCargaAtual()+"kg");
 	 				}
 			 		
 			 		
@@ -95,10 +93,10 @@ public class Cronometro {
 			 			maquina1.descarrega(35);
 				 		esteira2.carrega();
 				 		resfriador1.carrega();
-			 			System.out.println("\n"+HHmmss.format(new Date()) +" => "+ i+" maquina 1 produziu uma peça! \n uma peça em Esteira2 - Total: "+ esteira2.getCargaAtual());
+			 			System.out.println("\n"+HHmmss.format(new Date()) +" - "+ MascaraTempo(i*60) +" => maquina 1 produziu uma peça! \n uma peça em Esteira2 - Total: "+ esteira2.getCargaAtual()+"kg");
 				 		
 			 		}else {
-			 			System.out.println("\n"+HHmmss.format(new Date()) +" => "+ i+" Esteira2 cheia!");
+			 			System.out.println("\n"+HHmmss.format(new Date()) +" - "+ MascaraTempo(i*60) +" => Esteira2 cheia!");
 				 		
 			 		}
 			 		
@@ -110,7 +108,7 @@ public class Cronometro {
 			 		
 			 		
 			 		resfriador1.descarrega(35);
-			 		System.out.println("\n"+HHmmss.format(new Date()) +" => "+ i+" resfriador esfriou uma peça em Esteira2 - Total: ");
+			 		System.out.println("\n"+HHmmss.format(new Date()) +" - "+ MascaraTempo(i*60) +" => resfriador esfriou uma peça em Esteira2");
 				 		
 			 		
 			 		
@@ -126,6 +124,18 @@ public class Cronometro {
 	public void imprime() {
 		
                 
+	}
+	
+	public String MascaraTempo(long seconds) {
+		
+		Duration duracao = Duration.ofSeconds(seconds);
+		long horas = duracao.toHours();
+		long minutos = duracao.minusHours(horas).toMinutes();
+		long segundos = duracao.minusHours(horas).minusMinutes(minutos).getSeconds();
+		
+				
+		
+		return horas+":"+minutos+":"+segundos;
 	}
 	
 	
