@@ -1,16 +1,23 @@
 
 public class Entidade {
 	
-	private Integer pesoEntrada;	
-	private Integer freqEntrada;
-	private Integer pesoSaida;
-	private Integer tempoProducao;
-	private Integer pesoCapacidadeMaxima;
-	private Integer consumo;
-	private String tipoConsumo;
-	private Integer desperdicio;
-	private Integer cargaAtual=0;
+	private String nomeEntidade;
+	private Integer tempoExecucao=0;
 	
+	private Integer pesoEntrada=0;	
+	private Integer freqEntrada=0;
+	private Integer pesoSaida=0;
+	private Integer tempoProducao=0;
+	private Integer pesoCapacidadeMaxima=0;
+	private Integer consumo=0;
+	private String tipoConsumo;
+	private Integer desperdicio=0;
+	private Integer cargaAtual=0;
+	private long momentoLigouProximaMaquina = 0;
+	
+	
+
+
 	//construtor 
 	public Entidade() {
 				
@@ -18,9 +25,10 @@ public class Entidade {
 	
 	
 		//construtor para a maquina que prepara a materia prima - com desperdicio
-		public Entidade(Integer pesoEntrada, Integer freqEntrada, Integer pesoSaida, Integer tempoProducao,
+		public Entidade(String nome, Integer pesoEntrada, Integer freqEntrada, Integer pesoSaida, Integer tempoProducao,
 				Integer pesoCapacidadeMaxima, Integer consumo, String tipoConsumo, Integer desperdicio) {
 			
+			this.setNomeEntidade(nome);
 			this.setPesoEntrada(pesoEntrada);
 			this.setFreqEntrada(freqEntrada);
 			this.setPesoSaida(pesoSaida);
@@ -32,9 +40,10 @@ public class Entidade {
 		}
 		
 		//construtor para as demais entidades
-		public Entidade(Integer pesoEntrada, Integer freqEntrada, Integer pesoSaida, Integer tempoProducao,
+		public Entidade(String nome, Integer pesoEntrada, Integer freqEntrada, Integer pesoSaida, Integer tempoProducao,
 				Integer pesoCapacidadeMaxima, Integer consumo, String tipoConsumo) {
 			
+			this.setNomeEntidade(nome);
 			this.setPesoEntrada(pesoEntrada);
 			this.setFreqEntrada(freqEntrada);
 			this.setPesoSaida(pesoSaida);
@@ -125,7 +134,39 @@ public boolean descarrega(Integer valor) {
 		this.desperdicio = desperdicio;
 	}
 
-	
+	public long getMomentoLigouProximaMaquina() {
+		return momentoLigouProximaMaquina;
+	}
+
+
+	public void setMomentoLigouProximaMaquina(long momentoLigouProximaMaquina) {
+		this.momentoLigouProximaMaquina = momentoLigouProximaMaquina;
+	}
+	public String getNomeEntidade() {
+		return nomeEntidade;
+	}
+
+
+	public void setNomeEntidade(String nomeEntidade) {
+		this.nomeEntidade = nomeEntidade;
+	}
+
+
+	public Integer getTempoExecucao() {
+		return tempoExecucao;
+	}
+
+
+	public void setTempoExecucao(Integer tempoExecucao) {
+		this.tempoExecucao = tempoExecucao;
+	}
+
+
+	public void setCargaAtual(Integer cargaAtual) {
+		this.cargaAtual = cargaAtual;
+	}
+
+
 	
 	
 	
